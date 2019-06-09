@@ -2,7 +2,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 8080,
   mongoose = require('mongoose'),
-  Film = require('./models/filmListModels'),
+  Film = require('./api/models/filmListModels'),
   bodyParser=require('body-parser');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/Filmsdb');

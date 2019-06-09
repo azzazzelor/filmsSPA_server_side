@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    const filmList = require('../controllers/filmListControllers.js');
+    const filmList = require('./controllers/filmListControllers.js');
 
     app.route('/addnew')
         .post(filmList.create_a_film);
