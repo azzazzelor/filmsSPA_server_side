@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/azzazzelor/filmsSPA_server_side/issues"
   },
-  "homepage": "https://github.com/azzazzelor/filmsSPA_server_side#readme"
+  "homepage": "https://github.com/azzazzelor/filmsSPA_server_side#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.5.14"
+  }
 }
