@@ -25,7 +25,12 @@ module.exports = {
         }
       },
     ]
-  }, 
-        //  plugins: [
-        //     new HtmlWebpackPlugin({hash:true,template:'./public/index.html',filename:"index.html"}),]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      hash: true,
+      title : 'Webpack Work',
+      template: './public/index.html'
+    })
+  ]
+}
