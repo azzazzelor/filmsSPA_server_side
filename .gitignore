@@ -1,3 +1,5 @@
 package-lock.json
 node_modules/
 public/bundle.*
+*/.DS_Store
+.DS_Store
