@@ -6,11 +6,6 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
-  },
   module: {
     rules: [
       {
@@ -30,7 +25,12 @@ module.exports = {
         }
       },
     ]
-  }, 
-        //  plugins: [
-        //     new HtmlWebpackPlugin({hash:true,template:'./public/index.html',filename:"index.html"}),]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      hash: true,
+      title : 'Webpack Work',
+      template: './public/index.html'
+    })
+  ]
+}

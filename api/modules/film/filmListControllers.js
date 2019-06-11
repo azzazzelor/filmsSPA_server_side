@@ -25,12 +25,16 @@ exports.delete_by_id = function(req,res){
         function(err, film){
             if(err) res.send(err);
             res.json({
-                message: 'Task sucessully deleted'
+                message: 'Film sucessully deleted'
             })
         }
     )
 };
 
-exports.get_a_film = function(req,res){
-    return Film.findById(id).remove()
+exports.get_a_film = function(req, res){
+    Film.findById(req.params.filmId, function(err, film) {
+        if (err)
+            res.send(err);
+        res.json(film);
+    });
 }
