@@ -15,20 +15,20 @@ you can check all run scripts inside package.json
 
 _server requests url:
 
-1) get all: http://localhost:8080/films
+1) get all: /api/films
 	type: GET
-	url: /films
+	url: /api/films
 
-2) get one: http://localhost:8080/film/id
+2) get one: /api/film/id
 	type: GET
-	url: /film/:filmId
+	url: /api/film/:filmId
 
-3) add new: http://localhost:8080/films
+3) add new: /api/films
 	type: POST
-	url: /films
+	url: /api/films
 	params:
 		type: body
 
-4) remove one: http://localhost:8080/film/id
+4) remove one: /api/film/id
 	type: DELETE
-	url: /film/:filmId
+	url: /api/film/:filmId

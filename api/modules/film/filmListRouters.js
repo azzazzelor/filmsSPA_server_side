@@ -3,12 +3,12 @@
 module.exports = function(app) {
     const filmList = require('./filmListControllers.js');
 
-    app.route('/films')
+    app.route('/api/films')
         .get(filmList.list_all_films)
         .post(filmList.create_a_film);
         
     
-    app.route('/film/:filmId')
+    app.route('/api/film/:filmId')
         .get(filmList.get_a_film)
         .delete(filmList.delete_by_id);
 

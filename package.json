@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "start-watch": "webpack --mode development --watch",
-    "start-dev": "webpack-dev-server --mode development --open",
+    "start-dev": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\"",
     "serve-dev": "concurrently --kill-others \"npm run start-dev\" \"node server.js\"",
     "build": "webpack --mode production"
   },
