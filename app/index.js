@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './Main.js'
+import App from './App.js'
 
 if (document.getElementById('root')) {
-  ReactDOM.render(<Main />, document.getElementById('root'));
+  ReactDOM.render(<App />, document.getElementById('root'));
 } else {
   console.error("Root container was not fund!", {
-    action: "ReactDOM.render(<Main />, document.getElementById('root'))"
+    action: "ReactDOM.render(<App />, document.getElementById('root'))"
   });
 }

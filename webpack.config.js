@@ -32,16 +32,12 @@ module.exports = {
     port: 3000, // Defaults to 8080
     open: true,
 
-    watchOptions: {
-      // Delay the rebuild after the first change
-      aggregateTimeout: 300,
-
-      // Poll using interval (in ms, accepts boolean too)
-      poll: 1000,
-    },
-
     proxy: {
-      "/api": "http://localhost:8080"
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+      }
     }
   },
   plugins: [
