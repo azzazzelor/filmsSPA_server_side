@@ -12,4 +12,4 @@ module.exports = function(app) {
         .delete(filmList.delete_by_id);
 
     console.log("\x1b[32m", "----------> Film routers connected", "\x1b[37m");
-}
+};

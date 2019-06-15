@@ -1,7 +1,9 @@
-const reques = () => {
+const request = () => {
     // metods from servece: get, post, delete....
     return {
-        get: getRequest
+        get: getRequest,
+        post: postRequest,
+        delete: deleteRequest
     };
 
 
@@ -12,7 +14,7 @@ const reques = () => {
         if (params) {
             fullUrl = `?${jsonToSearchString(params)}`;
         }
-        
+
 
         return executeRequest(fullUrl, 'GET');
     }
@@ -25,6 +27,16 @@ const reques = () => {
         }
 
         return executeRequest(fullUrl, 'GET', (body ? body : null));
+    }
+
+    function deleteRequest(url, params, body) {
+        let fullUrl = url;
+
+        if (params) {
+            fullUrl = `?${jsonToSearchString(params)}`;
+        }
+
+        return executeRequest(fullUrl, 'DELETE', (body ? body : null));
     }
 
     //function for do request
@@ -68,4 +80,4 @@ const reques = () => {
     }
 };
 
-module.exports = reques();
+module.exports = request();

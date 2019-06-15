@@ -1,28 +1,53 @@
 import React, {Component} from 'react';
-import reques from './utils/loader';
+import request from './utils/loader';
+import FilmList from './modules/film/components/FilmList';
 
-class App extends Component {
+export default class App extends Component {
+    constructor(props) {
+        super(props);
 
-	state = {
-        films: []
+        this.state = {
+            films: [],
+            active: ''
+        };
+
+        this.loadFilms();
     }
 
     componentDidMount() {
-    	reques.get('/api/films')
-    		.then((response) => {
-    			this.setState({ films: response });
-    			console.log(this.state.films);
-    		})
-    		.catch(console.log);
+    	
+    }
+
+    loadFilms() {
+        request.get('/api/films')
+            .then((response) => {
+                console.log(response);
+                this.setState({ films: response });
+            })
+            .catch(console.log);
+    }
+
+    addNewFilm(data) {
+        request.post('/api/films')
+            .then((response) => {
+                console.log(response);
+                this.state.films.push(response);
+            })
+            .catch(console.log);
+    }
+
+    removeFilm(filmId) {
+        request.delete(`/api/film/${filmId}`)
+            .then((response) => {
+                console.log(response);
+                this.state.films.pus(response);
+            })
+            .catch(console.log);
     }
 
     render () {
 	    return (
-	    	<div>
-	            
-	        </div>
+	    	<FilmList data={this.state.films}/>
 	    );
     }
 }
-
-export default App;
