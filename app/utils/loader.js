@@ -6,7 +6,18 @@ const reques = () => {
 
 
     //function for GET requests
-    function getRequest(url, params, body) {
+    function getRequest(url, params) {
+        let fullUrl = url;
+
+        if (params) {
+            fullUrl = `?${jsonToSearchString(params)}`;
+        }
+        
+
+        return executeRequest(fullUrl, 'GET');
+    }
+
+    function postRequest(url, params, body) {
         let fullUrl = url;
 
         if (params) {

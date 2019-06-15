@@ -30,8 +30,10 @@ glob.sync(`api/modules/**/*.Routers.js`).forEach((file) => {
 	require(path.resolve(file))(app);
 });
 
+app.use(express.static('public'));
+
 app.use(function(req, res) {
-	res.status(404).send({url: `${req.originalUrl} not found`});
+	res.status(404).send({url: `${req.originalUrl} not found!`});
 });
 
 app.listen(PORT, () => console.info(`RESTful API Server is runing on ${PORT} port`));

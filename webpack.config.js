@@ -27,6 +27,7 @@ module.exports = {
       },
     ]
   },
+  
   devServer: {
     host: process.env.HOST || 'localhost', // Defaults to `localhost`
     port: process.env.PORT || 3000, // Defaults to 8080
@@ -40,7 +41,7 @@ module.exports = {
       }
     }
   },
-  
+
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
