@@ -1,8 +1,11 @@
 const reques = () => {
+    // metods from servece: get, post, delete....
     return {
         get: getRequest
     };
 
+
+    //function for GET requests
     function getRequest(url, params, body) {
         let fullUrl = url;
 
@@ -13,6 +16,7 @@ const reques = () => {
         return executeRequest(fullUrl, 'GET', (body ? body : null));
     }
 
+    //function for do request
     function executeRequest(url, type, body) {
         const options = {
             method: type,
@@ -27,6 +31,7 @@ const reques = () => {
             });
     }
 
+    //helper function to convert object to url params
     function jsonToSearchString(json) {
         const string = Object.keys(json).map(function(k) {
             return encodeURIComponent(k) + '=' + encodeURIComponent(json[k]);
@@ -35,6 +40,7 @@ const reques = () => {
         return string;
     }
 
+    //check response status
     function checkStatus(response) {
         if (response.status >= 200 && response.status < 300) {
             return response;
@@ -45,6 +51,7 @@ const reques = () => {
         }
     }
 
+    //parse response from server
     function parseJSON(response) {
         return response.json()
     }

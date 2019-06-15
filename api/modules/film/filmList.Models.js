@@ -4,19 +4,18 @@ const mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 const FilmSchema = new Schema({
-    id: {
-    	type:Number
-    },
+    id: Number,
     name: {
-    	type:String,
-    	required: true
+    	type: String,
+    	required: true,
+    	unique: true
     },
     format_type:{
     	type: String,
     	required: true
     },
     actors: [{
-        id:Number,
+        id: Number,
         name:{
         	type: String,
             required: true
@@ -27,5 +26,7 @@ const FilmSchema = new Schema({
         },
     }]
 });
+
+console.log("\x1b[32m", "----------> Film model connected", "\x1b[37m");
 
 module.exports = mongoose.model('Films', FilmSchema);

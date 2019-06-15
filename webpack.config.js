@@ -28,8 +28,8 @@ module.exports = {
     ]
   },
   devServer: {
-    host: 'localhost', // Defaults to `localhost`
-    port: 3000, // Defaults to 8080
+    host: process.env.HOST || 'localhost', // Defaults to `localhost`
+    port: process.env.PORT || 3000, // Defaults to 8080
     open: true,
 
     proxy: {
@@ -40,6 +40,7 @@ module.exports = {
       }
     }
   },
+  
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
