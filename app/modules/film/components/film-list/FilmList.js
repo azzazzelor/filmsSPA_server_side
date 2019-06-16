@@ -1,6 +1,7 @@
 import React from 'react';
 import FilmRow from '../film-row/FilmRow';
 import './film-list.scss';
+import Table from 'react-bootstrap/Table';
 
 export default ({data, select, active}) => {
     if (!data) {
@@ -19,7 +20,7 @@ export default ({data, select, active}) => {
     });
 
     return (
-        <table className="film-list table table-striped">
+        <Table striped bordered hover variant="dark">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -30,6 +31,6 @@ export default ({data, select, active}) => {
             <tbody>
                 {films}
             </tbody>
-        </table>
+        </Table>
     );
 }

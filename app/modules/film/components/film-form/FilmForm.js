@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import './film-form.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 
 export default class FilmForm extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(...props) {
+        super(...props);
 
         this.film = {
             name: '',
@@ -29,11 +30,11 @@ export default class FilmForm extends Component {
         return (
             <Form onSubmit={this.saveFilm}>
                 <Form.Row>
-                    <Form.Group controlId="formFilmName">
+                    <Form.Group as={Col} controlId="formFilmName">
                         <Form.Label>Film name</Form.Label>
                         <Form.Control name="name" type="text" placeholder="Enter film name"/>
                     </Form.Group>
-                    <Form.Group controlId="formFilmGenre">
+                    <Form.Group as={Col} controlId="formFilmGenre">
                         <Form.Label>Film genre</Form.Label>
                         <Form.Control name="format_type" type="text" placeholder="Enter film genre"/>
                     </Form.Group>

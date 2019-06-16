@@ -16,10 +16,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {loader: "babel-loader"}
             },
-            /*{
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },*/
             {
                 test: /\.(css|sass|scss)$/,
                 use: ExtractTextPlugin.extract({
@@ -40,6 +36,10 @@ module.exports = {
                 target: "http://localhost:8080",
                 changeOrigin: true,
                 pathRewrite: { '^/api': '' },
+            },
+            '/static': {
+                target: `http://localhost:3000`,
+                pathRewrite: {'^/static' : '/app/static'}
             }
         }
     },

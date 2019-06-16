@@ -5,10 +5,12 @@ import Row from 'react-bootstrap/Row';
 import FilmList from './modules/film/components/film-list/FilmList';
 import ActiveFilm from './modules/film/components/film-active/ActiveFilm';
 import FilmForm from './modules/film/components/film-form/FilmForm';
+import AppHeader from './modules/root/components/header/Header';
+import Col from 'react-bootstrap/Col';
 
 export default class App extends Component {
-    constructor(props) {
-        super(props);
+    constructor(...props) {
+        super(...props);
 
         this.state = {
             films: [],
@@ -78,7 +80,14 @@ export default class App extends Component {
 
     render () {
 	    return (
-            <Container>
+	        <>
+            <AppHeader />
+            <Container fluid="true">
+                <Row>
+                    <Col sm={12}>
+                        {' toolbar '}
+                    </Col>
+                </Row>
                 <Row>
                     <FilmForm create={this.addNewFilm.bind(this)}/>
                 </Row>
@@ -91,6 +100,7 @@ export default class App extends Component {
                     </div>
                 </Row>
             </Container>
+            </>
 	    );
     }
 }
