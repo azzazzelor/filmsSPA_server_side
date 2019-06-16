@@ -20,13 +20,14 @@ const request = () => {
     }
 
     function postRequest(url, params, body) {
+
         let fullUrl = url;
 
         if (params) {
             fullUrl = `?${jsonToSearchString(params)}`;
         }
 
-        return executeRequest(fullUrl, 'GET', (body ? body : null));
+        return executeRequest(fullUrl, 'POST', (body ? body : null));
     }
 
     function deleteRequest(url, params, body) {
@@ -41,9 +42,14 @@ const request = () => {
 
     //function for do request
     function executeRequest(url, type, body) {
+        const HEADERS = new Headers();
+
+        HEADERS.append("Content-Type", "application/json");
+
         const options = {
             method: type,
-            body: body
+            body: body,
+            headers: HEADERS
         };
 
         return fetch(url, options)

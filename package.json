@@ -23,10 +23,12 @@
   },
   "homepage": "https://github.com/azzazzelor/filmsSPA_server_side#readme",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "express": "^4.17.1",
     "glob": "^7.1.4",
     "mongoose": "^5.5.14",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
@@ -39,6 +41,7 @@
     "babel-preset-env": "^1.7.0",
     "concurrently": "^4.1.0",
     "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",

@@ -32,3 +32,5 @@ _server requests url:
 4) remove one: /api/film/id
 	type: DELETE
 	url: /api/film/:filmId
+
+After each git pull do not forget run "npm i" to install all dependencies
