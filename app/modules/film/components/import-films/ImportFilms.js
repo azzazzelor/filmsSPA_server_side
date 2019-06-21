@@ -37,7 +37,7 @@ export default ({upload}) => {
                         onChange={e => handleFileChosen(e.target.files[0])}
                         name="file"
                         type="file"
-                        acept='.txt'
+                        accept=".txt"
                         placeholder="select file"/>
                 </Form.Group>
             </Form.Row>

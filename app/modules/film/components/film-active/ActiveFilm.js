@@ -2,7 +2,7 @@ import React from 'react';
 import './film-active.scss';
 import Button from 'react-bootstrap/Button';
 
-export default ({film, remove, index}) => {
+export default ({film, remove, edit, index}) => {
 
     if (!film) {
         return (<p>Loading...</p>);
@@ -21,11 +21,13 @@ export default ({film, remove, index}) => {
             <div>{film.name}</div>
             <div>{film.format_type}</div>
             <div>{actors}</div>
-            <Button className="btn-info">
+            <Button className="btn-info"
+                    onClick={() => edit('edit')}>
                 edit film
             </Button>
 
-            <Button className="btn-danger" onClick={() => remove(film, index)}>
+            <Button className="btn-danger"
+                    onClick={() => remove(film)}>
               remove film
             </Button>
         </div>

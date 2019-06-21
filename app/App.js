@@ -21,7 +21,8 @@ export default class App extends Component {
             films: [],
             active: 0,
             selected: '',
-            showForm: false
+            showForm: false,
+            formType: 'new'
         };
 
         this.loadFilms();
@@ -51,8 +52,18 @@ export default class App extends Component {
             .catch(console.log);
     }
 
-    removeFilm(film, index) {
+    removeFilm(film) {
         Request.delete(`/api/film/${film._id}`)
+            .then((response) => {
+                console.log(response);
+                this.setState({ active: 0 });
+                this.loadFilms();
+            })
+            .catch(console.log);
+    }
+
+    updateFilm(film) {
+        Request.put(`/api/film/${film._id}`,'', JSON.stringify(film))
             .then((response) => {
                 console.log(response);
                 this.setState({ active: 0 });
@@ -69,8 +80,11 @@ export default class App extends Component {
         this.setState({ showForm: false });
     }
 
-    handleShowForm() {
-        this.setState({ showForm: true });
+    handleShowForm(type) {
+        this.setState({
+            showForm: true,
+            formType: type
+        });
     }
 
     render () {
@@ -84,6 +98,7 @@ export default class App extends Component {
                         <ActiveFilm
                             film={this.state.selected}
                             remove={this.removeFilm.bind(this)}
+                            edit={this.handleShowForm.bind(this)}
                         />
                         <ImportFilms upload={this.addNewFilm.bind(this)}/>
                     </Col>
@@ -106,7 +121,12 @@ export default class App extends Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <FilmForm create={this.addNewFilm.bind(this)}/>
+                        <FilmForm
+                            create={this.addNewFilm.bind(this)}
+                            update={this.updateFilm.bind(this)}
+                            film={this.state.selected}
+                            type={this.state.formType}
+                        />
                     </Modal.Body>
 
                     <Modal.Footer>

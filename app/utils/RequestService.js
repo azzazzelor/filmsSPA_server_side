@@ -3,7 +3,8 @@ const request = () => {
     return {
         get: getRequest,
         post: postRequest,
-        delete: deleteRequest
+        delete: deleteRequest,
+        put: putRequest
     };
 
 
@@ -38,6 +39,16 @@ const request = () => {
         }
 
         return executeRequest(fullUrl, 'DELETE', (body ? body : null));
+    }
+
+    function putRequest(url, params, body) {
+        let fullUrl = url;
+
+        if (params) {
+            fullUrl = `?${jsonToSearchString(params)}`;
+        }
+
+        return executeRequest(fullUrl, 'PUT', (body ? body : null));
     }
 
     //function for do request

@@ -9,19 +9,40 @@ export default class FilmForm extends Component {
     constructor(...props) {
         super(...props);
 
-        this.film = {
+        this.state = {
+            id: '',
             name: '',
-            format_type: '',
-            actors: []
+            genre: '',
+            actors: ''
         };
+
         this.saveFilm = this.saveFilm.bind(this);
+    }
+
+    componentDidMount() {
+        if(this.props.type === 'edit') {
+            const { film } = this.props;
+
+            let actors = [];
+            film.actors.forEach((actor) => {
+                actors.push(`${actor.name} ${actor.famile}`);
+            });
+
+            this.setState({
+                id: film._id,
+                name: film.name,
+                genre: film.format_type,
+                actors: actors.join(', ')
+            });
+        }
     }
 
     saveFilm(event) {
         event.preventDefault();
 
+        const { create, update } = this.props;
         const data = new FormData(event.target);
-        const { create } = this.props;
+
 
         let film = {};
         data.forEach(function(value, key){
@@ -31,7 +52,6 @@ export default class FilmForm extends Component {
         const actors = film.actors.split(',');
 
         film.actors = [];
-
         actors.forEach((actorText) => {
             const actor = {};
             const temp = actorText.replace(/(^\s*)|(\s*)$/g, '').split(" ");
@@ -41,7 +61,14 @@ export default class FilmForm extends Component {
             film.actors.push(actor);
         });
 
-        create(film);
+        if(this.props.type === 'edit') {
+            film._id = this.state.id;
+
+            update(film);
+        } else {
+            create(film);
+        }
+
     }
 
     render() {
@@ -50,17 +77,29 @@ export default class FilmForm extends Component {
                 <Form.Row>
                     <Form.Group as={Col} controlId="formFilmName">
                         <Form.Label>Film name</Form.Label>
-                        <Form.Control name="name" type="text" placeholder="Enter film name"/>
+                        <Form.Control
+                            defaultValue={this.state.name}
+                            name="name"
+                            type="text"
+                            placeholder="Enter film name"/>
                     </Form.Group>
                     <Form.Group as={Col} controlId="formFilmGenre">
                         <Form.Label>Film genre</Form.Label>
-                        <Form.Control name="format_type" type="text" placeholder="Enter film genre"/>
+                        <Form.Control
+                            defaultValue={this.state.genre}
+                            name="format_type"
+                            type="text"
+                            placeholder="Enter film genre"/>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group controlId="formFilmActors">
+                    <Form.Group as={Col} controlId="formFilmActors">
                         <Form.Label>Film's actors</Form.Label>
-                        <Form.Control name="actors" as="textarea" rows="2" placeholder="Enter film actors"/>
+                        <Form.Control
+                            defaultValue={this.state.actors}
+                            name="actors"
+                            type="text"
+                            placeholder="Enter film actors"/>
                         <Form.Text className="text-muted">
                             Separate actors by ","
                         </Form.Text>
