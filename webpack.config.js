@@ -3,12 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
 
+const HOST = process.env.HOST || 'localhost'; // Defaults to `localhost`
+const PORT = process.env.PORT || 5000; // Defaults to 8080
+
 module.exports = {
     entry: { main: './app/index.js' },
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js'
     },
+
     module: {
         rules: [
             {
@@ -27,8 +31,8 @@ module.exports = {
     },
 
     devServer: {
-        host: process.env.HOST || 'localhost', // Defaults to `localhost`
-        port: process.env.PORT || 3000, // Defaults to 8080
+        host: HOST,
+        port: PORT,
         open: true,
 
         proxy: {
@@ -38,7 +42,7 @@ module.exports = {
                 pathRewrite: { '^/api': '' },
             },
             '/static': {
-                target: `http://localhost:3000`,
+                target: `http://${HOST}:${PORT}`,
                 pathRewrite: {'^/static' : '/app/static'}
             }
         }

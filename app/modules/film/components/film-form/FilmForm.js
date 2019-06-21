@@ -23,7 +23,25 @@ export default class FilmForm extends Component {
         const data = new FormData(event.target);
         const { create } = this.props;
 
-        create(data);
+        let film = {};
+        data.forEach(function(value, key){
+            film[key] = value;
+        });
+
+        const actors = film.actors.split(',');
+
+        film.actors = [];
+
+        actors.forEach((actorText) => {
+            const actor = {};
+            const temp = actorText.replace(/(^\s*)|(\s*)$/g, '').split(" ");
+            actor.name = temp[0];
+            actor.famile = temp[1];
+
+            film.actors.push(actor);
+        });
+
+        create(film);
     }
 
     render() {
