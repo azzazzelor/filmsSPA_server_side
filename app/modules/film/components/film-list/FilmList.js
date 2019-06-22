@@ -3,12 +3,17 @@ import FilmRow from '../film-row/FilmRow';
 import './film-list.scss';
 import Table from 'react-bootstrap/Table';
 
-export default ({data, select, active}) => {
+export default ({data, select, active, terms}) => {
     if (!data) {
         return (<p>Loading...</p>);
     }
 
-    const films = data.map((film, index) => {
+    const filmList = data.filter((film) => {debugger;
+        return film.name.toLowerCase().includes(terms) ||
+            JSON.stringify(film.actors).toLowerCase().includes(terms);
+    });
+
+    const films = filmList.map((film, index) => {
         return (
             <FilmRow
                 film={film}

@@ -19,10 +19,12 @@ export default class App extends Component {
 
         this.state = {
             films: [],
+            filmList: [],
             active: 0,
             selected: '',
             showForm: false,
-            formType: 'new'
+            formType: 'new',
+            terms: ''
         };
 
         this.loadFilms();
@@ -36,7 +38,9 @@ export default class App extends Component {
         Request.get('/api/films')
             .then((response) => {
                 console.log(response);
-                this.setState({ films: response });
+                this.setState({
+                    films: response
+                });
                 this.setState({ selected: response[this.state.active] });
             })
             .catch(console.log);
@@ -87,11 +91,18 @@ export default class App extends Component {
         });
     }
 
+    searchFilm(terms) {
+        this.setState({
+            terms: terms
+        });
+    }
+
     render () {
 	    return (
 	        <>
             <Container fluid="true">
-                <AppHeader />
+                <AppHeader
+                    search={this.searchFilm.bind(this)}/>
 
                 <Row>
                     <Col sm={4}>
@@ -111,6 +122,7 @@ export default class App extends Component {
                             data={this.state.films}
                             select={this.selectFilm.bind(this)}
                             active={this.state.active}
+                            terms={this.state.terms}
                         />
                     </Col>
                 </Row>
